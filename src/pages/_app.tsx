@@ -1,23 +1,20 @@
 import { AppProps } from 'next/app'
-import Head from 'next/head'
+import Image from 'next/future/image'
 
 import { globalStyles } from 'styles/global'
+import logoImg from 'assets/logo.svg'
+import { Container, Header } from 'styles/pages/app'
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Head>
-        <title>Ignite - Shop</title>
-        <meta name="description" content="" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
-      </Head>
+    <Container>
+      <Header>
+        <Image src={logoImg} alt="" />
+      </Header>
 
       <Component {...pageProps} />
-    </>
+    </Container>
   )
 }
