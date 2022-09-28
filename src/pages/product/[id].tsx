@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/future/image'
 import Stripe from 'stripe'
@@ -46,31 +47,37 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   }
 
   return (
-    <S.ProductContainer>
-      <S.ImageContainer>
-        <Image
-          src={product.imageUrl}
-          width="520"
-          height={480}
-          alt={product.name}
-        />
-      </S.ImageContainer>
+    <>
+      <Head>
+        <title>{product.name} | Ignite Shop</title>
+      </Head>
 
-      <S.ProductDetail>
-        <h1>{product.name}</h1>
+      <S.ProductContainer>
+        <S.ImageContainer>
+          <Image
+            src={product.imageUrl}
+            width="520"
+            height={480}
+            alt={product.name}
+          />
+        </S.ImageContainer>
 
-        <span>{product.price}</span>
+        <S.ProductDetail>
+          <h1>{product.name}</h1>
 
-        <p>{product.description}</p>
+          <span>{product.price}</span>
 
-        <button
-          disabled={isCreatingCheckoutSession}
-          onClick={() => handleBuyProduct(product)}
-        >
-          Comprar agora
-        </button>
-      </S.ProductDetail>
-    </S.ProductContainer>
+          <p>{product.description}</p>
+
+          <button
+            disabled={isCreatingCheckoutSession}
+            onClick={() => handleBuyProduct(product)}
+          >
+            Comprar agora
+          </button>
+        </S.ProductDetail>
+      </S.ProductContainer>
+    </>
   )
 }
 
